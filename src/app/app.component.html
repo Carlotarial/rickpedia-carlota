@@ -1,0 +1,65 @@
+<!-- src/app/app.component.html -->
+<mat-sidenav-container class="app-container">
+  <mat-sidenav #sidenav mode="side" class="app-sidenav" fixedInViewport>
+    <mat-toolbar>Menú</mat-toolbar>
+    <mat-nav-list>
+      <a
+        mat-list-item
+        routerLink="/"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+        >Inicio</a
+      >
+      <a
+        mat-list-item
+        routerLink="/characters"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+        >Personajes</a
+      >
+      <a
+        mat-list-item
+        routerLink="/episodes"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+        >Episodios</a
+      >
+      <a
+        mat-list-item
+        routerLink="/locations"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+        >Localizaciones</a
+      >
+      <a
+        mat-list-item
+        routerLink="/team"
+        routerLinkActive="active"
+        (click)="sidenav.close()"
+        >Equipo</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        aria-label="Abrir menú"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>{{ title }}</span>
+      <span class="spacer"></span>
+      <!-- botones extra: búsqueda global, modo oscuro, etc. -->
+      <button mat-icon-button aria-label="Tema">
+        <mat-icon>dark_mode</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <main class="app-main">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

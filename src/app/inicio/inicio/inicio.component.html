@@ -1,18 +1,31 @@
-<div class="inicio">
-  <mat-toolbar color="primary">
-    <span>Rick y Morty Pedia</span>
-  </mat-toolbar>
+<mat-card class="portada-card">
+  <mat-card-header>
+    <mat-card-title>Rick & Morty Pedia</mat-card-title>
+    <mat-card-subtitle
+      >Explora personajes, episodios y localizaciones</mat-card-subtitle
+    >
+  </mat-card-header>
 
-  <div class="portada">
-    <h1>Bienvenido a Rick y Morty Pedia</h1>
-    <p>Explora personajes, episodios y localizaciones de la famosa serie.</p>
+  <img
+    mat-card-image
+    src="assets/rick-morty-banner.jpg"
+    alt="Rick and Morty banner"
+  />
 
-    <div class="menu-inicio">
-      <button mat-raised-button color="accent" routerLink="/personajes">Personajes</button>
-      <button mat-raised-button color="accent" routerLink="/episodios">Episodios</button>
-      <button mat-raised-button color="accent" routerLink="/localizaciones">Localizaciones</button>
-      <button mat-raised-button color="accent" routerLink="/equipo">Equipo</button>
-    </div>
-  </div>
-</div>
+  <mat-card-content>
+    <p>Bienvenido a tu aplicación de consulta de la API de Rick and Morty.</p>
+  </mat-card-content>
 
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="navegar('/characters')">
+      Personajes
+    </button>
+    <button mat-stroked-button (click)="navegar('/episodes')">Episodios</button>
+    <button mat-stroked-button (click)="navegar('/locations')">
+      Localizaciones
+    </button>
+    <button mat-icon-button (click)="navegar('/team')">
+      <mat-icon>people</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

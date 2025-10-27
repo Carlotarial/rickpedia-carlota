@@ -1,1 +1,36 @@
-<p>pagina-no-encontrada works!</p>
+<div class="not-found-root">
+  <mat-card
+    class="not-found-card"
+    role="region"
+    aria-labelledby="notfound-title"
+  >
+    <mat-card-header>
+      <mat-card-title id="notfound-title"
+        >404 — Página no encontrada</mat-card-title
+      >
+      <mat-card-subtitle>Hmm... eso no debería estar aquí</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>
+        No hemos encontrado la ruta que has introducido. Puede que esté mal
+        escrita o ya no exista.
+      </p>
+
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="volverInicio()">
+          Volver al inicio
+        </button>
+        <button mat-button routerLink="/characters">Ir a Personajes</button>
+        <button mat-button routerLink="/team">Ir a mi Equipo</button>
+      </div>
+    </mat-card-content>
+
+    <mat-card-footer class="hint">
+      <small
+        >Si crees que esto es un error, revisa la URL o vuelve a la página
+        principal.</small
+      >
+    </mat-card-footer>
+  </mat-card>
+</div>
