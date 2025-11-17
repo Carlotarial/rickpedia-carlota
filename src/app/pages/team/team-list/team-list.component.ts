@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TeamListComponent implements OnInit {
   displayedColumns = [
+    'image',         
     'characterId',
     'characterName',
     'alias',
@@ -36,6 +37,10 @@ export class TeamListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTeam();
+  }
+
+  getCharacterImageUrl(characterId: number | string): string {
+    return `https://rickandmortyapi.com/api/character/avatar/${characterId}.jpeg`;
   }
 
   loadTeam(): void {

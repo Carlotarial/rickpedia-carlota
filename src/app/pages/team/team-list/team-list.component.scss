@@ -107,6 +107,29 @@
   text-decoration: underline;
 }
 
+/* Avatar del personaje */
+
+.character-avatar-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.character-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f3c6dd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.character-avatar-link:hover .character-avatar {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
 /* Prioridad chips */
 
 .priority-chip {
@@ -161,5 +184,10 @@
   .team-table td.mat-cell {
     padding: 0.5rem;
     font-size: 0.85rem;
+  }
+
+  .character-avatar {
+    width: 32px;
+    height: 32px;
   }
 }
