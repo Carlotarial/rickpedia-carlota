@@ -45,9 +45,9 @@
 }
 
 ::ng-deep .mat-mdc-select-panel {
-  background-color: #ffffff !important;          
+  background-color: #ffffff !important;
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(213, 76, 140, 0.25); 
+  box-shadow: 0 4px 14px rgba(213, 76, 140, 0.25);
 }
 
 ::ng-deep .mat-mdc-option {
@@ -56,7 +56,7 @@
 }
 
 ::ng-deep .mat-mdc-option.mdc-list-item:hover {
-  background-color: #ffe3f1 !important;           
+  background-color: #ffe3f1 !important;
 }
 
 /* Info resultados */
@@ -69,8 +69,10 @@
 /* Grid de personajes */
 .characters-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  /* Limita el tamaño y evita imágenes gigantes */
+  grid-template-columns: repeat(auto-fill, minmax(230px, 260px));
   gap: 1.2rem;
+  justify-content: center; /* Centra cuando hay pocas cards */
 }
 
 .character-card {
@@ -81,6 +83,10 @@
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(230, 180, 205, 0.18);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+  /* 👇 Evita que crezca demasiado cuando hay 1–2 resultados */
+  max-width: 260px;
+  width: 100%;
 }
 
 .character-card:hover {
@@ -90,8 +96,12 @@
 }
 
 .character-image {
-  aspect-ratio: 1 / 1;
+  width: 100%;
   object-fit: cover;
+
+  /* Opcional si aún se ve grande
+  max-height: 260px;
+  */
 }
 
 mat-card-content {
