@@ -7,11 +7,13 @@ import {
   Observable,
   BehaviorSubject,
   combineLatest,
+} from 'rxjs';
+import {
   startWith,
   switchMap,
   tap,
   finalize,
-} from 'rxjs';
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-characters-list',
@@ -26,7 +28,7 @@ export class CharactersListComponent implements OnInit {
 
   filtersForm!: FormGroup;
 
-  // 👇 AHORA CERRADO POR DEFECTO
+  // Filtros cerrados por defecto
   showFilters = false;
 
   private page$ = new BehaviorSubject<number>(1);
@@ -46,6 +48,7 @@ export class CharactersListComponent implements OnInit {
     const filters$ = this.filtersForm.valueChanges.pipe(
       startWith(this.filtersForm.value),
       tap(() => {
+        // Cuando cambian filtros, volvemos a la página 1
         this.currentPage = 1;
         this.page$.next(1);
       })
@@ -79,5 +82,16 @@ export class CharactersListComponent implements OnInit {
 
     this.currentPage = newPage;
     this.page$.next(newPage);
+  }
+
+  // 👇 Botón "Limpiar filtros"
+  clearFilters(): void {
+    this.filtersForm.reset({
+      name: '',
+      status: '',
+      species: '',
+    });
+    // No hace falta tocar la paginación aquí, el tap() de filters$
+    // ya pone la página a 1 cuando cambian los filtros.
   }
 }

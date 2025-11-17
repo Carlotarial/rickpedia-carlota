@@ -19,7 +19,6 @@
   <!-- Filtros -->
   <mat-card class="filters-card" *ngIf="showFilters">
     <form [formGroup]="filtersForm" class="filters">
-
       <!-- Nombre -->
       <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
@@ -43,6 +42,15 @@
         <input matInput formControlName="species" />
       </mat-form-field>
 
+      <!-- Botón limpiar filtros -->
+      <button
+        type="button"
+        mat-stroked-button
+        class="filters-clear-btn"
+        (click)="clearFilters()"
+      >
+        Limpiar filtros
+      </button>
     </form>
   </mat-card>
 

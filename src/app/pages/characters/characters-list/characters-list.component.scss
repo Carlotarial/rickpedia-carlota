@@ -90,6 +90,22 @@
   width: 100%;
 }
 
+/* Botón limpiar filtros */
+.filters-clear-btn {
+  align-self: flex-end;
+  margin-left: auto;
+  margin-top: 0.1rem;
+  font-size: 0.85rem;
+  padding-inline: 1rem;
+  border-radius: 999px;
+  border-color: #f3c6dd !important;
+}
+
+.filters-clear-btn:hover {
+  background-color: #ffeaf6;
+}
+
+/* Select panel estilos */
 ::ng-deep .mat-mdc-select-panel {
   background-color: #ffffff !important;
   border-radius: 12px;
@@ -245,5 +261,11 @@ mat-card-content {
   .filters mat-form-field {
     flex: 1 1 100%;
     max-width: 100%;
+  }
+
+  .filters-clear-btn {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.4rem;
   }
 }
