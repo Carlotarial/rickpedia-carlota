@@ -28,14 +28,66 @@
   font-size: 0.98rem;
 }
 
+/* Botones generales */
+
+.add-btn,
+.action-btn {
+  font-size: 0.75rem !important;
+  padding: 0.2rem 0.8rem !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  border-radius: 999px !important;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+/* Botón "Añadir miembro" */
+
 .add-btn {
   margin-top: 0.6rem;
-  border-radius: 999px;
-  padding: 0.5rem 1.4rem;
-  background-color: #e48acb !important;
-  color: #fff !important;
-  font-weight: 500;
-  box-shadow: 0 4px 12px rgba(232, 153, 205, 0.35);
+  background-color: #f39acb !important;
+  color: #ffffff !important;
+  box-shadow: 0 3px 9px rgba(243, 154, 203, 0.5);
+  border: none !important;
+}
+
+.add-btn:hover {
+  background-color: #ec7fbf !important;
+  box-shadow: 0 4px 12px rgba(243, 154, 203, 0.65);
+}
+
+/* Botones de acción (Editar / Eliminar) */
+
+.action-btn {
+  margin-right: 0.4rem;
+  border-color: #f3c6dd !important;
+  color: #d75c9b !important;
+  background-color: #ffe6f3 !important;
+}
+
+.action-btn:last-child {
+  margin-right: 0;
+}
+
+.action-btn:hover {
+  background-color: #ffd8ec !important;
+}
+
+/* Variante Editar */
+
+.action-btn--edit {
+  background-color: #ffe6f3 !important;
+  border-color: #f3c6dd !important;
+  color: #c23b79 !important;
+}
+
+/* Variante Eliminar */
+
+.action-btn--delete {
+  background-color: #ffd0e3 !important;
+  border-color: #f1a7c7 !important;
+  color: #b6386c !important;
 }
 
 /* Loading */
@@ -153,12 +205,6 @@
 .priority-chip.high {
   background: #ffb3c7;
   color: #b4003c;
-}
-
-/* Botones acciones */
-
-.action-btn {
-  margin-right: 0.4rem;
 }
 
 /* Responsive */
