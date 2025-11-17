@@ -5,8 +5,19 @@
     <p class="subtitle">Filtra y explora los personajes de Rick & Morty de forma sencilla.</p>
   </header>
 
+  <!-- Botón para mostrar/ocultar filtros -->
+  <button
+    type="button"
+    class="filters-toggle"
+    (click)="toggleFilters()"
+    [class.open]="showFilters"
+  >
+    <span class="filters-toggle__label">Filtros</span>
+    <span class="filters-toggle__chevron"></span>
+  </button>
+
   <!-- Filtros -->
-  <mat-card class="filters-card">
+  <mat-card class="filters-card" *ngIf="showFilters">
     <form [formGroup]="filtersForm" class="filters">
 
       <!-- Nombre -->

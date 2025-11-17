@@ -26,9 +26,15 @@ export class CharactersListComponent implements OnInit {
 
   filtersForm!: FormGroup;
 
+  // 👇 AHORA CERRADO POR DEFECTO
+  showFilters = false;
+
   private page$ = new BehaviorSubject<number>(1);
 
-  constructor(private fb: FormBuilder, private charactersService: CharactersService) {}
+  constructor(
+    private fb: FormBuilder,
+    private charactersService: CharactersService
+  ) {}
 
   ngOnInit(): void {
     this.filtersForm = this.fb.group({
@@ -46,9 +52,7 @@ export class CharactersListComponent implements OnInit {
     );
 
     this.characters$ = combineLatest([filters$, this.page$]).pipe(
-      tap(() => {
-        this.isLoading = true;
-      }),
+      tap(() => (this.isLoading = true)),
       switchMap(([filters, page]) =>
         this.charactersService
           .getCharacters(
@@ -58,25 +62,22 @@ export class CharactersListComponent implements OnInit {
             filters['species'] || undefined
           )
           .pipe(
-            tap(() => {
-              this.currentPage = page;
-            }),
-            finalize(() => {
-              this.isLoading = false;
-            })
+            tap(() => (this.currentPage = page)),
+            finalize(() => (this.isLoading = false))
           )
       )
     );
   }
 
+  toggleFilters(): void {
+    this.showFilters = !this.showFilters;
+  }
+
   onPageChange(next: boolean): void {
     const newPage = this.currentPage + (next ? 1 : -1);
-
-    if (newPage < 1) {
-      return;
-    }
+    if (newPage < 1) return;
 
     this.currentPage = newPage;
-    this.page$.next(this.currentPage);
+    this.page$.next(newPage);
   }
 }
