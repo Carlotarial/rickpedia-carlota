@@ -8,6 +8,8 @@ import {
 } from '../team-form-dialog/team-form-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+type PriorityFilter = 'all' | 'low' | 'medium' | 'high';
+
 @Component({
   selector: 'app-team-list',
   standalone: false,
@@ -16,7 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TeamListComponent implements OnInit {
   displayedColumns = [
-    'image',         
+    'image',
     'characterId',
     'characterName',
     'alias',
@@ -26,8 +28,20 @@ export class TeamListComponent implements OnInit {
     'actions',
   ];
 
+  /** Lista completa tal cual viene del backend */
+  allTeam: TeamMember[] = [];
+
+  /** Lista filtrada que se muestra en la tabla */
   team: TeamMember[] = [];
+
   isLoading = true;
+
+  /** Estado de los filtros */
+  filterText = '';
+  filterPriority: PriorityFilter = 'all';
+
+  /** Mostrar/ocultar menú de filtros */
+  showFilters = false;
 
   constructor(
     private teamService: TeamService,
@@ -47,7 +61,8 @@ export class TeamListComponent implements OnInit {
     this.isLoading = true;
     this.teamService.getTeam().subscribe({
       next: (team) => {
-        this.team = team;
+        this.allTeam = team ?? [];
+        this.applyFilters();
         this.isLoading = false;
       },
       error: () => {
@@ -56,6 +71,51 @@ export class TeamListComponent implements OnInit {
           duration: 3000,
         });
       },
+    });
+  }
+
+  /** Mostrar/ocultar card de filtros */
+  toggleFilters(): void {
+    this.showFilters = !this.showFilters;
+  }
+
+  /** Handler del input de texto */
+  onFilterTextChange(value: string): void {
+    this.filterText = value ?? '';
+    this.applyFilters();
+  }
+
+  /** Handler de los botones de prioridad */
+  onPriorityClick(priority: PriorityFilter): void {
+    this.filterPriority = priority;
+    this.applyFilters();
+  }
+
+  /** Limpiar todos los filtros */
+  clearFilters(): void {
+    this.filterText = '';
+    this.filterPriority = 'all';
+    this.applyFilters();
+  }
+
+  /** Aplica los filtros sobre allTeam y deja el resultado en team */
+  private applyFilters(): void {
+    const text = this.filterText.trim().toLowerCase();
+    const priority = this.filterPriority;
+
+    this.team = this.allTeam.filter((member) => {
+      // Filtro texto: ID, nombre o alias
+      const matchesText =
+        !text ||
+        member.alias?.toLowerCase().includes(text) ||
+        member.characterName?.toLowerCase().includes(text) ||
+        String(member.characterId).includes(text);
+
+      // Filtro prioridad
+      const matchesPriority =
+        priority === 'all' || member.priority === priority;
+
+      return matchesText && matchesPriority;
     });
   }
 
@@ -120,7 +180,9 @@ export class TeamListComponent implements OnInit {
             });
             return;
           }
-          this.snackBar.open('Miembro actualizado', 'Cerrar', { duration: 3000 });
+          this.snackBar.open('Miembro actualizado', 'Cerrar', {
+            duration: 3000,
+          });
           this.loadTeam();
         },
         error: () => {
@@ -150,7 +212,9 @@ export class TeamListComponent implements OnInit {
           this.snackBar.open('Miembro eliminado', 'Cerrar', { duration: 3000 });
           this.loadTeam();
         } else {
-          this.snackBar.open('Error al eliminar', 'Cerrar', { duration: 3000 });
+          this.snackBar.open('Error al eliminar', 'Cerrar', {
+            duration: 3000,
+          });
         }
       },
       error: () => {
