@@ -1,0 +1,63 @@
+<h2 mat-dialog-title class="dialog-title">
+  {{ isEdit ? 'Editar miembro' : 'Añadir miembro' }}
+</h2>
+
+<form [formGroup]="form" class="dialog-form">
+  <mat-dialog-content class="dialog-content">
+    <div class="form-grid">
+      <!-- ID del personaje -->
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>ID del personaje</mat-label>
+        <input matInput type="number" formControlName="characterId" />
+        <mat-hint>El ID del personaje en la API</mat-hint>
+      </mat-form-field>
+
+      <!-- Nombre del personaje -->
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Nombre del personaje</mat-label>
+        <input matInput formControlName="characterName" />
+      </mat-form-field>
+
+      <!-- Alias -->
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Alias</mat-label>
+        <input matInput formControlName="alias" />
+      </mat-form-field>
+
+      <!-- Nota -->
+      <mat-form-field appearance="outline" class="full-width" floatLabel="always">
+        <mat-label>Nota</mat-label>
+        <textarea matInput formControlName="note" rows="3"></textarea>
+      </mat-form-field>
+
+      <!-- PRIORIDAD con botones -->
+      <div class="priority-filter">
+        <span class="priority-label">Prioridad</span>
+
+        <mat-button-toggle-group
+          formControlName="priority"
+          class="priority-toggle-group"
+          aria-label="Seleccionar prioridad"
+        >
+          <mat-button-toggle value="low">Baja</mat-button-toggle>
+          <mat-button-toggle value="medium">Media</mat-button-toggle>
+          <mat-button-toggle value="high">Alta</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="onSubmit()"
+      [disabled]="form.invalid"
+    >
+      Guardar
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+.team-page {
+  padding: 2rem 1.5rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header */
+
+.team-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1.8rem;
+}
+
+.team-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #d54c8c;
+  margin: 0;
+}
+
+.team-subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 0.98rem;
+}
+
+.add-btn {
+  margin-top: 0.6rem;
+  border-radius: 999px;
+  padding: 0.5rem 1.4rem;
+  background-color: #e48acb !important;
+  color: #fff !important;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(232, 153, 205, 0.35);
+}
+
+/* Loading */
+
+.team-loading {
+  margin-top: 1.5rem;
+}
+
+/* Empty state */
+
+.empty-team {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #fff2f8;
+  border: 1px solid #f3c6dd;
+  text-align: center;
+  color: #666;
+}
+
+.empty-hint {
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* Tabla */
+
+.table-wrapper {
+  margin-top: 1.5rem;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #f3c6dd;
+  background: #fff9fc;
+  box-shadow: 0 6px 18px rgba(240, 180, 205, 0.25);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.team-table {
+  background: transparent;
+}
+
+.team-table th.mat-header-cell {
+  background-color: #ffe2f0;
+  color: #8c3c66;
+  font-weight: 600;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.team-table td.mat-cell {
+  padding: 0.7rem 0.8rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* Enlace al personaje */
+
+.link-character {
+  color: #c23b79;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link-character:hover {
+  text-decoration: underline;
+}
+
+/* Prioridad chips */
+
+.priority-chip {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.priority-chip.low {
+  background: #d4f7d4;
+  color: #2a7c2a;
+}
+
+.priority-chip.medium {
+  background: #fff3b0;
+  color: #9e7a07;
+}
+
+.priority-chip.high {
+  background: #ffb3c7;
+  color: #b4003c;
+}
+
+/* Botones acciones */
+
+.action-btn {
+  margin-right: 0.4rem;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .team-page {
+    padding: 1.5rem 0.8rem;
+  }
+
+  .team-header {
+    align-items: flex-start;
+  }
+
+  .team-title {
+    font-size: 1.7rem;
+  }
+
+  .table-wrapper {
+    border-radius: 12px;
+  }
+
+  .team-table th.mat-header-cell,
+  .team-table td.mat-cell {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+}

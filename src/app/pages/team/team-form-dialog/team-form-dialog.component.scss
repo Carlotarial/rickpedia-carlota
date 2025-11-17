@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:host {
+  font-family: 'Poppins', sans-serif;
+}
+
+.dialog-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #d54c8c;
+  margin-bottom: 0.2rem;
+}
+
+.dialog-form {
+  width: 100%;
+}
+
+.dialog-content {
+  padding-top: 0.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem 1.2rem;
+  margin-top: 0.4rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+/* PRIORIDAD - BOTONES */
+
+.priority-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.priority-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.priority-toggle-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.priority-toggle-group .mat-button-toggle {
+  border-radius: 999px;
+  padding: 0 1rem;
+  font-weight: 500;
+}
+
+/* Colores seleccionados */
+
+.priority-toggle-group
+  .mat-button-toggle[value='low'].mat-button-toggle-checked {
+  background-color: #91d7a3 !important;
+  color: #1e4b2b !important;
+}
+
+.priority-toggle-group
+  .mat-button-toggle[value='medium'].mat-button-toggle-checked {
+  background-color: #ffe38b !important;
+  color: #7a5a00 !important;
+}
+
+.priority-toggle-group
+  .mat-button-toggle[value='high'].mat-button-toggle-checked {
+  background-color: #ffb3c8 !important;
+  color: #8a0034 !important;
+}
+
+.priority-toggle-group .mat-button-toggle:hover {
+  opacity: 0.9;
+}
+
+/* Acciones */
+
+.dialog-actions {
+  padding: 0.8rem 0 0.3rem;
+}
+
+.dialog-actions button[mat-button] {
+  color: #777;
+}
+
+.dialog-actions button[mat-raised-button] {
+  border-radius: 999px;
+  padding: 0.45rem 1.4rem;
+  background-color: #e48acb !important;
+  color: #fff !important;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(232, 153, 205, 0.35);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dialog-title {
+    font-size: 1.25rem;
+  }
+}

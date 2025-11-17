@@ -1,0 +1,102 @@
+.episode-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  animation: fadeIn 0.4s ease;
+}
+
+.episode-card {
+  background: #ffeef8;
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 14px rgba(255, 182, 193, 0.25);
+}
+
+.episode-avatar {
+  background-color: #ffafd0;
+  border-radius: 50%;
+}
+
+.episode-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #d7438c;
+}
+
+.episode-subtitle {
+  color: #a05a84;
+  font-size: 0.95rem;
+}
+
+.episode-content {
+  padding-top: 10px;
+}
+
+.episode-info p {
+  margin: 6px 0;
+  font-size: 1.1rem;
+  color: #7b4464;
+}
+
+.episode-secondary-card {
+  background: #fff3fa;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(255, 182, 193, 0.2);
+}
+
+.episode-secondary-card h3 {
+  margin-top: 0;
+  color: #c63f83;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.episode-character-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.episode-character-item {
+  background: #ffe5f2;
+  padding: 8px 14px;
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(255, 182, 193, 0.25);
+  transition: transform 0.15s ease;
+}
+
+.episode-character-item:hover {
+  transform: translateY(-2px);
+}
+
+.character-link {
+  color: #c63f83;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.character-link:hover {
+  color: #8d2a5e;
+  text-decoration: underline;
+}
+
+.episode-no-characters {
+  margin-top: 8px;
+  color: #7b4464;
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

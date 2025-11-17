@@ -1,0 +1,57 @@
+<div class="character-detail-page">
+  <p *ngIf="hasError && !isLoading" class="error-text">
+    No se ha podido cargar el personaje.
+  </p>
+
+  <ng-container *ngIf="!isLoading && !hasError && character as c">
+    <mat-card class="detail-card">
+      <div class="detail-layout">
+        <div class="image-wrapper">
+          <img [src]="c.image" [alt]="c.name" class="character-image" />
+        </div>
+
+        <div class="info-wrapper">
+          <h1 class="name">{{ c.name }}</h1>
+
+          <div class="tags">
+            <span class="tag status" [ngClass]="c.status | lowercase">
+              {{ c.status }}
+            </span>
+            <span class="tag species">
+              {{ c.species }}
+            </span>
+            <span class="tag gender">
+              {{ c.gender }}
+            </span>
+          </div>
+
+          <dl class="info-list">
+            <div class="info-row">
+              <dt>Origen</dt>
+              <dd>{{ c.origin.name }}</dd>
+            </div>
+
+            <div class="info-row">
+              <dt>Localización actual</dt>
+              <dd>{{ c.location.name }}</dd>
+            </div>
+
+            <div class="info-row">
+              <dt>Nº de apariciones</dt>
+              <dd>{{ c.episode.length }}</dd>
+            </div>
+          </dl>
+
+          <div class="actions">
+            <button mat-raised-button color="primary" (click)="addToTeam()">
+              Añadir al equipo
+            </button>
+            <button mat-stroked-button color="primary" (click)="goBack()">
+              Volver a la lista
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </ng-container>
+</div>

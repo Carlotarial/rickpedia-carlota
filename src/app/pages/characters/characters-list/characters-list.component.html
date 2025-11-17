@@ -1,0 +1,107 @@
+<div class="characters-page">
+  <!-- Cabecera -->
+  <header class="header">
+    <h1 class="title">Personajes</h1>
+    <p class="subtitle">Filtra y explora los personajes de Rick & Morty de forma sencilla.</p>
+  </header>
+
+  <!-- Filtros -->
+  <mat-card class="filters-card">
+    <form [formGroup]="filtersForm" class="filters">
+
+      <!-- Nombre -->
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <!-- ESTADO (SELECT) -->
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="alive">Alive</mat-option>
+          <mat-option value="dead">Dead</mat-option>
+          <mat-option value="unknown">Unknown</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Especie -->
+      <mat-form-field appearance="outline">
+        <mat-label>Especie</mat-label>
+        <input matInput formControlName="species" />
+      </mat-form-field>
+
+    </form>
+  </mat-card>
+
+  <!-- Contenido principal -->
+  <ng-container *ngIf="characters$ | async as data">
+    <!-- Loader -->
+    <div *ngIf="isLoading" class="loading-overlay">
+      <div class="loading-spinner"></div>
+      <p>Cargando personajes...</p>
+    </div>
+
+    <ng-container *ngIf="data; else errorTpl">
+      <div [class.content-dimmed]="isLoading">
+        <div class="results-info" *ngIf="data.info">
+          <span>Resultados: {{ data.info.count }}</span>
+        </div>
+
+        <!-- Grid de personajes -->
+        <div class="characters-grid" *ngIf="data.results.length">
+          <mat-card
+            *ngFor="let character of data.results"
+            class="character-card"
+            [routerLink]="['/characters', character.id]"
+          >
+            <img
+              mat-card-image
+              [src]="character.image"
+              [alt]="character.name"
+              class="character-image"
+            />
+            <mat-card-content>
+              <h2 class="character-name">{{ character.name }}</h2>
+              <p class="character-meta">{{ character.status }} • {{ character.species }}</p>
+              <p class="character-location">
+                Última localización: <span>{{ character.location.name }}</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <!-- Paginación -->
+        <div class="pager" *ngIf="data.info">
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onPageChange(false)"
+            [disabled]="!data.info.prev"
+          >
+            Anterior
+          </button>
+
+          <span class="pager-text">
+            Página {{ currentPage }} de {{ data.info.pages }}
+          </span>
+
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onPageChange(true)"
+            [disabled]="!data.info.next"
+          >
+            Siguiente
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <!-- Error -->
+  <ng-template #errorTpl>
+    <p class="error-text">Ha ocurrido un error al cargar los personajes.</p>
+  </ng-template>
+</div>

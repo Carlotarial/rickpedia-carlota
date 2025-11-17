@@ -1,0 +1,41 @@
+<div class="location-detail-container" *ngIf="!isLoading && location as loc">
+  <mat-card class="location-card">
+    <mat-card-header>
+      <div mat-card-avatar class="location-avatar"></div>
+      <mat-card-title class="location-title">
+        {{ loc.name }}
+      </mat-card-title>
+      <mat-card-subtitle class="location-subtitle">
+        Dimensión: {{ loc.dimension || 'Desconocida' }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="location-content">
+      <div class="location-info">
+        <p><strong>Tipo:</strong> {{ loc.type || 'Desconocido' }}</p>
+        <p><strong>Dimensión:</strong> {{ loc.dimension || 'Desconocida' }}</p>
+        <p><strong>Nº residentes:</strong> {{ loc.residents.length }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Residentes en filas compactas -->
+  <mat-card class="location-secondary-card">
+    <h3>Residentes</h3>
+
+    <div *ngIf="loc.residents.length > 0; else noResidents" class="resident-grid">
+      <div *ngFor="let r of loc.residents" class="resident-row">
+        <a
+          [routerLink]="['/characters', r.split('/').pop()]"
+          class="resident-link"
+        >
+          Personaje #{{ r.split('/').pop() }}
+        </a>
+      </div>
+    </div>
+
+    <ng-template #noResidents>
+      <p class="location-no-residents">No hay residentes en esta localización.</p>
+    </ng-template>
+  </mat-card>
+</div>

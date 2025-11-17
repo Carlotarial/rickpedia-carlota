@@ -1,0 +1,22 @@
+{
+  "team": [
+    {
+      "id": "d331",
+      "characterId": 1,
+      "characterName": "Rick Sanchez",
+      "alias": "Rick Sanchez",
+      "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "priority": "high",
+      "createdAt": "2025-11-17T19:11:32.305Z"
+    },
+    {
+      "id": "3ae0",
+      "characterId": 2,
+      "characterName": "Morty Smith",
+      "alias": "Morty Smith",
+      "note": "",
+      "priority": "medium",
+      "createdAt": "2025-11-17T19:11:41.331Z"
+    }
+  ]
+}

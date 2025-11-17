@@ -1,0 +1,39 @@
+<div class="episode-detail-container" *ngIf="!isLoading && episode as ep">
+  <mat-card class="episode-card">
+    <mat-card-header>
+      <div mat-card-avatar class="episode-avatar"></div>
+      <mat-card-title class="episode-title">
+        {{ ep.episode }} — {{ ep.name }}
+      </mat-card-title>
+      <mat-card-subtitle class="episode-subtitle">
+        Fecha de emisión: {{ ep.air_date }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="episode-content">
+      <div class="episode-info">
+        <p><strong>Código del episodio:</strong> {{ ep.episode }}</p>
+        <p><strong>Nº de personajes:</strong> {{ ep.characters.length }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="episode-secondary-card">
+    <h3>Personajes que aparecen</h3>
+
+    <div *ngIf="ep.characters.length > 0; else noCharacters" class="episode-character-grid">
+      <div *ngFor="let ch of ep.characters" class="episode-character-item">
+        <a
+          [routerLink]="['/characters', ch.split('/').pop()]"
+          class="character-link"
+        >
+          Personaje #{{ ch.split('/').pop() }}
+        </a>
+      </div>
+    </div>
+
+    <ng-template #noCharacters>
+      <p class="episode-no-characters">No hay personajes en este episodio.</p>
+    </ng-template>
+  </mat-card>
+</div>

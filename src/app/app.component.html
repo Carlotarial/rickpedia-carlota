@@ -1,0 +1,39 @@
+<mat-toolbar class="rm-toolbar">
+  <div class="rm-toolbar-left">
+    <img
+      class="rm-logo-img"
+      src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg"
+      alt="Rick and Morty Logo"
+      routerLink="/"
+    />
+  </div>
+
+  <span class="spacer"></span>
+
+  <nav class="rm-nav">
+    <a
+      mat-button
+      [routerLink]="['/']"
+      routerLinkActive="rm-link-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Inicio
+    </a>
+    <a mat-button routerLink="/characters" routerLinkActive="rm-link-active">Personajes</a>
+    <a mat-button routerLink="/episodes" routerLinkActive="rm-link-active">Episodios</a>
+    <a mat-button routerLink="/locations" routerLinkActive="rm-link-active">Localizaciones</a>
+    <a mat-button routerLink="/team" routerLinkActive="rm-link-active">Equipo</a>
+  </nav>
+</mat-toolbar>
+
+<main class="rm-main">
+  <div class="rm-background">
+    <div class="rm-bubbles rm-bubble-1"></div>
+    <div class="rm-bubbles rm-bubble-2"></div>
+    <div class="rm-bubbles rm-bubble-3"></div>
+
+    <section class="rm-shell">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</main>

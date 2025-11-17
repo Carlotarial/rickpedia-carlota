@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.home {
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ---- TITULOS ---- */
+
+.home-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #d54c8c; 
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.5px;
+}
+
+.home-subtitle {
+  max-width: 650px;
+  margin: 0 auto 2rem auto;
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+/* ---- GRID TARJETAS ---- */
+
+.cards {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  padding: 0 1rem;
+}
+
+/* ---- TARJETA ---- */
+
+.home-card {
+  background: #ffeaf4; 
+  border-radius: 16px;
+  padding: 1.2rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  border: 1.5px solid #f3c6dd;
+  box-shadow: 0 4px 12px rgba(240, 180, 205, 0.3);
+
+  mat-card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #c63f7c;
+  }
+
+  mat-card-content {
+    color: #555;
+    font-size: 0.95rem;
+    margin-top: 0.4rem;
+  }
+}
+
+/* hover aesthetic */
+.home-card:hover {
+  transform: translateY(-5px);
+  background: #ffd7ec;
+  box-shadow: 0 6px 15px rgba(240, 160, 200, 0.35);
+}
+.home-gif-container {
+  margin-top: 3.5rem; 
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.home-gif {
+  width: 500px; 
+  max-width: 90%; 
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(215, 160, 200, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.home-gif:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 26px rgba(215, 160, 200, 0.35);
+}

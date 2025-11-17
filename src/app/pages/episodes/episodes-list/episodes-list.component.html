@@ -1,0 +1,71 @@
+<div class="episodes-page">
+  <header class="header">
+    <h1 class="title">Episodios</h1>
+    <p class="subtitle">Busca y explora los episodios de la serie de forma clara y minimalista.</p>
+  </header>
+
+  <mat-card class="filters-card">
+    <form [formGroup]="searchForm" class="filters">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del episodio</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+    </form>
+  </mat-card>
+
+  <ng-container *ngIf="episodes$ | async as data">
+    <div *ngIf="isLoading" class="loading-overlay">
+      <div class="loading-spinner"></div>
+      <p>Cargando episodios...</p>
+    </div>
+
+    <ng-container *ngIf="data; else errorTpl">
+      <div [class.content-dimmed]="isLoading">
+        <div class="results-info" *ngIf="data.info">
+          <span>Total episodios: {{ data.info.count }}</span>
+        </div>
+
+        <div class="episodes-grid" *ngIf="data.results.length">
+          <mat-card
+            class="episode-card"
+            *ngFor="let ep of data.results"
+            [routerLink]="['/episodes', ep.id]"
+          >
+            <mat-card-content>
+              <p class="episode-code">{{ ep.episode }}</p>
+              <h2 class="episode-name">{{ ep.name }}</h2>
+              <p class="episode-date">Emitido: {{ ep.air_date }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <!-- Paginación -->
+        <div class="pager" *ngIf="data.info">
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onPageChange(false)"
+            [disabled]="!data.info.prev"
+          >
+            Anterior
+          </button>
+
+          <span class="pager-text"> Página {{ currentPage }} de {{ data.info.pages }} </span>
+
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onPageChange(true)"
+            [disabled]="!data.info.next"
+          >
+            Siguiente
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #errorTpl>
+    <p class="error-text">Ha ocurrido un error al cargar los episodios.</p>
+  </ng-template>
+</div>

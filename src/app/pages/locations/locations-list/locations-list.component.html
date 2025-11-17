@@ -1,0 +1,84 @@
+<div class="locations-page">
+  <header class="header">
+    <h1 class="title">Localizaciones</h1>
+    <p class="subtitle">Explora los lugares y dimensiones del universo de Rick &amp; Morty.</p>
+  </header>
+
+  <mat-card class="filters-card">
+    <form [formGroup]="searchForm" class="filters">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de la localización</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+    </form>
+  </mat-card>
+
+  <!-- Contenido principal / resultados -->
+  <ng-container *ngIf="locations$ | async as data">
+    <!-- Loader -->
+    <div *ngIf="isLoading" class="loading-overlay">
+      <div class="loading-spinner"></div>
+      <p>Cargando localizaciones...</p>
+    </div>
+
+    <!-- Si hay datos -->
+    <ng-container *ngIf="data; else errorTpl">
+      <div [class.content-dimmed]="isLoading">
+        <div class="results-info" *ngIf="data.info">
+          <span>Total localizaciones: {{ data.info.count }}</span>
+        </div>
+
+        <div class="locations-grid" *ngIf="data.results.length">
+          <mat-card
+            class="location-card"
+            *ngFor="let loc of data.results"
+            [routerLink]="['/locations', loc.id]"
+          >
+            <mat-card-content>
+              <h2 class="location-name">{{ loc.name }}</h2>
+
+              <p class="location-meta">
+                <span class="chip">{{ loc.type || 'Tipo desconocido' }}</span>
+                <span class="chip soft">
+                  {{ loc.dimension || 'Dimensión desconocida' }}
+                </span>
+              </p>
+
+              <p class="location-residents">
+                Número de residentes:
+                <span>{{ loc.residents.length || 0 }}</span>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <!-- Paginación -->
+        <div class="pager" *ngIf="data.info">
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onPageChange(false)"
+            [disabled]="!data.info.prev"
+          >
+            Anterior
+          </button>
+
+          <span class="pager-text"> Página {{ currentPage }} de {{ data.info.pages }} </span>
+
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="onPageChange(true)"
+            [disabled]="!data.info.next"
+          >
+            Siguiente
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #errorTpl>
+    <p class="error-text">Ha ocurrido un error al cargar las localizaciones.</p>
+  </ng-template>
+</div>
