@@ -13,8 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-// opcional pero recomendado:
 import { MatOptionModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';   // ⭐ NECESARIO
 
 @NgModule({
   imports: [
@@ -33,6 +33,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatProgressSpinnerModule,
     MatOptionModule,
     MatButtonToggleModule,
+    MatSortModule,       
   ],
   exports: [
     MatToolbarModule,
@@ -50,6 +51,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatProgressSpinnerModule,
     MatOptionModule,
     MatButtonToggleModule,
+    MatSortModule,       
   ],
 })
 export class MaterialModule {}

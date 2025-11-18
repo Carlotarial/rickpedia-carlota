@@ -129,9 +129,8 @@
   background-color: #ffe2f0 !important;
 }
 
-
 .priority-filter-btn--active {
-  background-color: #ffe2f0 !important; 
+  background-color: #ffe2f0 !important;
   border-color: #f3c6dd !important;
   color: #8c3c66 !important;
   box-shadow: 0 2px 6px rgba(240, 180, 205, 0.6);
@@ -267,6 +266,11 @@
   font-weight: 600;
   padding: 0.8rem;
   font-size: 0.9rem;
+}
+
+/* Alineación del texto+flecha de sort */
+.team-table th.mat-header-cell .mat-sort-header-container {
+  justify-content: flex-start;
 }
 
 .team-table td.mat-cell {

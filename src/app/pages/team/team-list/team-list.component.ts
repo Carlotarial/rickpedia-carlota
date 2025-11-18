@@ -7,6 +7,7 @@ import {
   TeamMemberDialogData,
 } from '../team-form-dialog/team-form-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Sort } from '@angular/material/sort';
 
 type PriorityFilter = 'all' | 'low' | 'medium' | 'high';
 
@@ -28,19 +29,18 @@ export class TeamListComponent implements OnInit {
     'actions',
   ];
 
-  /** Lista completa tal cual viene del backend */
   allTeam: TeamMember[] = [];
 
-  /** Lista filtrada que se muestra en la tabla */
   team: TeamMember[] = [];
 
   isLoading = true;
 
-  /** Estado de los filtros */
   filterText = '';
   filterPriority: PriorityFilter = 'all';
 
-  /** Mostrar/ocultar menú de filtros */
+  sortActive: string | null = null;
+  sortDirection: 'asc' | 'desc' | '' = '';
+
   showFilters = false;
 
   constructor(
@@ -98,25 +98,65 @@ export class TeamListComponent implements OnInit {
     this.applyFilters();
   }
 
-  /** Aplica los filtros sobre allTeam y deja el resultado en team */
+  /** Handler de cambios en la cabecera de ordenación */
+  onSortChange(sort: Sort): void {
+    this.sortActive = sort.active || null;
+    this.sortDirection = sort.direction;
+    this.applyFilters();
+  }
+
   private applyFilters(): void {
     const text = this.filterText.trim().toLowerCase();
     const priority = this.filterPriority;
 
-    this.team = this.allTeam.filter((member) => {
-      // Filtro texto: ID, nombre o alias
+    // 1) Filtrado
+    let filtered = this.allTeam.filter((member) => {
       const matchesText =
         !text ||
         member.alias?.toLowerCase().includes(text) ||
         member.characterName?.toLowerCase().includes(text) ||
         String(member.characterId).includes(text);
 
-      // Filtro prioridad
       const matchesPriority =
         priority === 'all' || member.priority === priority;
 
       return matchesText && matchesPriority;
     });
+
+    if (this.sortActive && this.sortDirection) {
+      const active = this.sortActive as keyof TeamMember;
+      const direction = this.sortDirection === 'asc' ? 1 : -1;
+
+      filtered = [...filtered].sort((a, b) => {
+        const valueA = this.normalizeSortValue(a[active]);
+        const valueB = this.normalizeSortValue(b[active]);
+
+        if (valueA < valueB) return -1 * direction;
+        if (valueA > valueB) return 1 * direction;
+        return 0;
+      });
+    }
+
+    this.team = filtered;
+  }
+
+  private normalizeSortValue(value: any): any {
+    if (value === null || value === undefined) {
+      return '';
+    }
+
+    if (Object.prototype.toString.call(value) === '[object Date]') {
+      return (value as Date).getTime();
+    }
+    if (typeof value === 'string') {
+      const date = Date.parse(value);
+      if (!Number.isNaN(date)) {
+        return date;
+      }
+      return value.toLowerCase();
+    }
+
+    return value;
   }
 
   openCreate(): void {

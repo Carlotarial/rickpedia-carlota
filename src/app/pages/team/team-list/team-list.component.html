@@ -135,9 +135,11 @@
     <table
       mat-table
       [dataSource]="team"
+      matSort
+      (matSortChange)="onSortChange($event)"
       class="mat-elevation-z2 full-width team-table"
     >
-      <!-- IMAGEN DEL PERSONAJE -->
+      <!-- IMAGEN DEL PERSONAJE (no ordenable) -->
       <ng-container matColumnDef="image">
         <th mat-header-cell *matHeaderCellDef>Imagen</th>
         <td mat-cell *matCellDef="let row">
@@ -156,7 +158,9 @@
 
       <!-- ID DEL PERSONAJE -->
       <ng-container matColumnDef="characterId">
-        <th mat-header-cell *matHeaderCellDef>ID Personaje</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          ID Personaje
+        </th>
         <td mat-cell *matCellDef="let row">
           <a
             [routerLink]="['/characters', row.characterId]"
@@ -169,7 +173,9 @@
 
       <!-- NOMBRE DEL PERSONAJE -->
       <ng-container matColumnDef="characterName">
-        <th mat-header-cell *matHeaderCellDef>Personaje</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Personaje
+        </th>
         <td mat-cell *matCellDef="let row">
           {{ row.characterName }}
         </td>
@@ -177,19 +183,21 @@
 
       <!-- ALIAS -->
       <ng-container matColumnDef="alias">
-        <th mat-header-cell *matHeaderCellDef>Alias</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Alias</th>
         <td mat-cell *matCellDef="let row">{{ row.alias }}</td>
       </ng-container>
 
       <!-- NOTA -->
       <ng-container matColumnDef="note">
-        <th mat-header-cell *matHeaderCellDef>Nota</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nota</th>
         <td mat-cell *matCellDef="let row">{{ row.note }}</td>
       </ng-container>
 
       <!-- PRIORIDAD -->
       <ng-container matColumnDef="priority">
-        <th mat-header-cell *matHeaderCellDef>Prioridad</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Prioridad
+        </th>
         <td mat-cell *matCellDef="let row">
           <span class="priority-chip" [ngClass]="row.priority">
             {{ row.priority | titlecase }}
@@ -199,13 +207,15 @@
 
       <!-- FECHA CREACIÓN -->
       <ng-container matColumnDef="createdAt">
-        <th mat-header-cell *matHeaderCellDef>Creado</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Creado
+        </th>
         <td mat-cell *matCellDef="let row">
           {{ row.createdAt | date : 'short' }}
         </td>
       </ng-container>
 
-      <!-- ACCIONES -->
+      <!-- ACCIONES (no ordenable) -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell *matCellDef="let row">
