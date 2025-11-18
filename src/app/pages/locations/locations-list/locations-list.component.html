@@ -56,7 +56,7 @@
         <div class="pager" *ngIf="data.info">
           <button
             mat-stroked-button
-            color="primary"
+            class="pager-btn"
             (click)="onPageChange(false)"
             [disabled]="!data.info.prev"
           >
@@ -69,7 +69,7 @@
 
           <button
             mat-stroked-button
-            color="primary"
+            class="pager-btn"
             (click)="onPageChange(true)"
             [disabled]="!data.info.next"
           >

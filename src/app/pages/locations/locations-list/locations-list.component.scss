@@ -31,8 +31,6 @@
   background: #fff9fc;
   margin-bottom: 1.3rem;
   box-shadow: 0 4px 10px rgba(242, 194, 218, 0.15);
-
-  /* que el cuadro se adapte al tamaño del filtro */
   display: inline-block;
 }
 
@@ -42,7 +40,7 @@
   gap: 0.75rem 1rem;
   padding: 1rem 1.2rem 1.1rem;
   align-items: flex-start;
-  justify-content: flex-start; /* alineado a la izquierda */
+  justify-content: flex-start;
 }
 
 .filters mat-form-field {
@@ -136,6 +134,29 @@ mat-card-content {
 
 .pager-text {
   color: #666;
+}
+
+/* Botones de paginación rosas */
+.pager-btn {
+  border-radius: 999px;
+  border: 1px solid #f3c6dd !important;
+  color: #c23b79 !important;
+  padding: 0.35rem 1.1rem;
+  font-weight: 500;
+  background: #fff9fc !important;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.pager-btn:hover:not(:disabled) {
+  background: #ffe0f0 !important;
+  border-color: #e69ac3 !important;
+  box-shadow: 0 4px 10px rgba(230, 160, 200, 0.3);
+}
+
+.pager-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* Error */
